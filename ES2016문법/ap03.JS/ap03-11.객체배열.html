@@ -78,3 +78,58 @@
 </body>
 
 </html>
+
+<script>
+    //1. Object Arrary 생성
+    let objarray = [
+        { text: 'One', value: 'A' },
+        { text: 'Two', value: 'B' },
+        { text: 'Three', value: 'C' }
+    ];
+    console.log(objarray);
+
+    debugger;
+    //2. objarray 에 { text: 'Four', value: 'D' } 를 추가하시오
+    objarray[objarray.length] = { text: 'Four', value: 'D' };
+    console.log(objarray);
+
+    //3. objarray 에서 { text: 'Two', value: 'B' } 를 { text: '2', value: '2' } 로 바꾸시오.
+    //objarray[1] = { text: '2', value: '2' };
+    const findIndex = objarray.findIndex( (item, inxex, array)=>{
+        return item.text === 'Two';
+    } );
+    objarray[findIndex] = { text: '2', value: '2' };
+    console.log(findIndex);
+
+    //4. objarray 에서 filter 메서드를 사용하여 text의 값이 'One' 인 객체들을 찾으시오
+    const objarrayFilter = objarray.filter( (value, index, array)=>{
+        return value.text === "One";
+    } );
+    console.log(objarrayFilter);
+
+    //5. objarray 에서 { text: 'Three', value: 'C' } 를 삭제하시오.
+    const deleteIndex = objarray.findIndex( (item, index, array)=>{
+        return item.text === 'Three' && item.value === 'C';
+    } );
+    //delete objarray["2"];
+    console.log("deleteIndex", deleteIndex);
+    delete objarray[deleteIndex];
+    console.log(objarray);
+
+    debugger;
+
+    //6. objarray 에서 map 메서드를 사용하여 no 프로퍼티 추가하시오
+    objarray = objarray.map( (item, index, array)=>{
+        item.no = index;
+        return item;
+    });
+    console.log(objarray);
+
+    //7. objarray 에서 reduce 메서드를 사용하여 각 요소의 value 프로퍼티 를 합쳐서 하나의 문자열로 만드시오
+    const item = objarray.reduce( (prevItem, curtItem, index, array)=>{
+        prevItem.value = prevItem.value + curtItem.value;
+        return prevItem;
+    } );
+    console.log(item.value);
+
+</script>
