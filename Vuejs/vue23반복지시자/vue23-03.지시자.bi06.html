@@ -104,13 +104,28 @@
                 // { name:"하니", tel:"010-3456-8200", address:"방배"  } );
 
                 //강사님소스
-                const obj = { name:"하니", tel:"010-3456-8200", address:"방배"  };
+                const obj = {
+                    name:"하니",
+                    tel:"010-3456-8200",
+                    address:"방배"
+                };
                 //this.$data.contacts[ this.$data.contacts.length ] = obj;
                 this.$set( this.$data.contacts, this.$data.contacts.length, obj );
             },
             btnInputsAdd(){
-                this.$data.contacts[this.$data.contacts.length] = this.$set( this.$data.contacts, this.$data.contacts.length,
-                { name:this.$data.name, tel:this.$data.tel, address:this.$data.address  } );
+                //내소스
+                // this.$data.contacts[this.$data.contacts.length] = this.$set( this.$data.contacts, this.$data.contacts.length,
+                // { name:this.$data.name, tel:this.$data.tel, address:this.$data.address  } );
+
+                const obj2 = {
+                    name:this.$data.name,
+                    tel:this.$data.tel,
+                    address:this.$data.address,
+                };
+                this.$set( this.$data.contacts, this.$data.contacts.length, obj2 );
+                this.$data.name = null;
+                this.$data.tel = null;
+                this.$data.address = null;
             },
 
         },
