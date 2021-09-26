@@ -99,20 +99,21 @@
             span에 mouseup 이벤트 핸들러를 작성하시오.   ==> spanmouseup.   background-color를 pink로 설정
             span에 mouseout 이벤트 핸들러를 작성하시오.  ==> spanmouseout.  background-color를 red로 설정
         </xmp>
-        <span mouseover= "spanmouseover"
-              mousedown= "spanmousedown"
-              mouseup  = "spanmouseup"
-              mouseout = "spanmouseout" >
+
+        <span v-on:mouseover= "spanmouseover"
+        v-on:mousedown= "spanmousedown"
+        v-on:mouseup  = "spanmouseup"
+        v-on:mouseout = "spanmouseout" >
         </span>
-        <span mouseover= "spanmouseover"
-              mousedown= "spanmousedown"
-              mouseup  = "spanmouseup"
-              mouseout = "spanmouseout" >
+        <span v-on:mouseover= "spanmouseover"
+        v-on:mousedown= "spanmousedown"
+        v-on:mouseup  = "spanmouseup"
+        v-on:mouseout = "spanmouseout" >
         </span>
-        <span mouseover= "spanmouseover"
-              mousedown= "spanmousedown"
-              mouseup  = "spanmouseup"
-              mouseout = "spanmouseout">
+        <span v-on:mouseover= "spanmouseover"
+        v-on:mousedown= "spanmousedown"
+        v-on:mouseup  = "spanmouseup"
+        v-on:mouseout = "spanmouseout">
         </span>
         <hr />
 
@@ -124,13 +125,18 @@
             "vue23-01.v-for와배열.html" 를 참조하여 option 부분을 v-for 를 사용하도록 수정하시오.
 
         </xmp>
-        <select id="sel" change="selectchange">
-            <option value="../images/strawberry.gif">딸기</option>
-            <option value="../images/banana.gif">바나나</option>
-            <option value="../images/apple.gif" selected>사과</option>
+        <select id="sel" v-on:change="selectchange">
+            <option v-for="(option, index) in options"
+            v-bind:key="index"
+            v-bind:value="option.value"></option>
+
         </select>
 
-        <img id="img" src="img_select" />
+        <!-- <option value="../images/strawberry.gif">딸기</option>
+            <option value="../images/banana.gif">바나나</option>
+            <option value="../images/apple.gif" selected>사과</option> -->
+
+        <img id="img" v-bind:src="img_select" />
         <hr />
 
         <xmp>
@@ -139,7 +145,7 @@
             focus 이벤트 핸들러 ==> inputfocus. outline: 2px dotted red 설정
             blur 이벤트 핸들러 ==> inputblur. outline: none 설정
         </xmp>
-        <input type="text" id="ID" blur="inputblur" focus="inputfocus" />
+        <input type="text" id="ID" v-on:blur="inputblur" v-on:focus="inputfocus" />
         <hr />
 
     </div>
@@ -163,6 +169,12 @@
             img_image3: null,
             img_but1: "../images/but1.gif",
             img_swap: "../images/img_swap_off.png",
+            img_select: '../images/apple.gif',
+            options: [
+                {text:'딸기', value:'../images/strawberry.gif' },
+                {text:'바나나', value:'../images/banana.gif' },
+                {text:'사과', value:'../images/apple.gif' },
+            ],
         },
         //template: ``,
         methods: {
@@ -170,7 +182,7 @@
             imageclick(){
                 event.stopPropagation(); // 이벤트 버블링 취소
                 event.preventDefault(); // 이벤트 redirect 취소
-                console.log(event.target.href);
+                //console.log(event.target.href);
                 const href = event.target.href;
                 this.$set( this.$data, "img_image3", href );
                 //debugger;
@@ -191,8 +203,25 @@
                 }
 
 
+            },
+            spanmouseover(){
+                event.target.style.backgroundColor = 'yellow';
+            },
+            spanmousedown(){
+                event.target.style.backgroundColor = 'blue';
+            },
+            spanmouseout(){
+                event.target.style.backgroundColor = 'pink';
+            },
+            selectchange(){
+               this.$data.img_select = event.target.value;
+            },
+            inputblue(){
+                event,target.style.outline="none";
+            },
+            inputfocus(){
+                event.target.style.outline="2px dotted red"
             }
-
 
         },
         components: {
