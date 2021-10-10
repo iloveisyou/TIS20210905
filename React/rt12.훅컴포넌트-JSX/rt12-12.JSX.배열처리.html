@@ -30,4 +30,54 @@
 
 </html>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">
+    /* 자바스크립트로 컴파일러. ES6-->ES5, JSX-->ES5 */
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js">
+    /* import React, { Component, PureComponent } from 'react' */
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.7.2/prop-types.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">
+    /* import ReactDOM from 'react-dom' */
+</script>
 
+<script type="text/babel">
+    // import React, { useState, useEffect, useRef, useCallback, useMemo, Fragment } from 'react';
+    // import PropTypes from 'prop-types';
+    // import ReactRedux, { Provider, useDispatch, useSelector } from 'react-redux';
+    // import ReactRouterDOM, { BrowserRouter, Switch, Route, Redirect, Link, NavLink, useParams, useLocation, useHistory, useRouteMatch } from 'react-router-dom';
+    // import { takeEvery, put, call, all, fork, spawn } from 'redux-saga/effects';
+
+    const { useState, useEffect, useRef, useCallback, useMemo, Fragment } = React;
+
+    function Todo(props) {
+        // 컴포넌트의 상태값 설정
+        const [todoList, setTodoList] = useState([
+            { taskName: "빨래하기", finished: false },
+            { taskName: "공부하기", finished: true },
+            { taskName: "게임하기", finished: true },
+        ]); // 상태값이 기본타입인 경우
+
+        // JSX로 화면 만들기
+        // const todoList = [
+        //     { taskName: "빨래하기", finished: false },
+        //     { taskName: "공부하기", finished: true },
+        //     { taskName: "게임하기", finished: true },
+        // ].map( (item)=>{
+        //     return {item.taskName}, {item.finished}
+        // });
+        const todos = todoList.map( (todo, index)=>{
+            return <li key={index}>{todo.taskName}</li>
+        });
+        //todos
+        return (
+            <ul>
+                {todoList.map( (todo, index)=>{
+                    return <li key={index}>{todo.taskName}</li>
+                })}
+            </ul>
+        )
+    }
+    ReactDOM.render( <Todo />, document.getElementById("app"))
+</script>

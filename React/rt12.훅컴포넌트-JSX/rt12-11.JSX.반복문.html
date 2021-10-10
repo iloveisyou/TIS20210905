@@ -43,3 +43,37 @@
 </html>
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">
+    /* 자바스크립트로 컴파일러. ES6-->ES5, JSX-->ES5 */
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js">
+    /* import React, { Component, PureComponent } from 'react' */
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.7.2/prop-types.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">
+    /* import ReactDOM from 'react-dom' */
+</script>
+
+<script type="text/babel">
+    // import React, { useState, useEffect, useRef, useCallback, useMemo, Fragment } from 'react';
+    // import PropTypes from 'prop-types';
+    // import ReactRedux, { Provider, useDispatch, useSelector } from 'react-redux';
+    // import ReactRouterDOM, { BrowserRouter, Switch, Route, Redirect, Link, NavLink, useParams, useLocation, useHistory, useRouteMatch } from 'react-router-dom';
+    // import { takeEvery, put, call, all, fork, spawn } from 'redux-saga/effects';
+
+    const { useState, useEffect, useRef, useCallback, useMemo, Fragment } = React;
+
+    function Loop3(props) {
+        // 컴포넌트의 상태값 설정
+        const [변수명, set변수명] = useState(["One", "Two", "Three"]); // 상태값이 기본타입인 경우
+        // JSX로 화면 만들기
+        const lis = 변수명.map( (value)=>{
+            return <li key={value}> {value} </li>
+        });
+        return (
+            <ul>{lis}</ul>
+        )
+    }
+    ReactDOM.render( <Loop3 />, document.getElementById("wrap3") );
+</script>
