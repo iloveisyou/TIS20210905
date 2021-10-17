@@ -36,10 +36,14 @@
             const [parentText, setParentText] = useState('parent text'); // 상태값이 기본타입인 경우
             const [childMessage, setChildMessage] = useState(null); // 상태값이 기본타입인 경우
 
+            // 콜백 메서드의 연관 배열에는 사용되는 상태명을 기술.
+            // 콜백 메서드에서 상태를 한개를 사용하면 1개를 적고
+            // 콜백 메서드에서 상태를 두개를 사용하면 2개를 적으시오.
             const callbackChildText = useCallback( (text)=> {
                 console.log(text);
                 setChildMessage(text);
-            });
+                setParentText(text);
+            }, [childMessage, parentText]);
 
             // JSX로 화면 만들기
             return (
@@ -89,4 +93,4 @@
 
 
 
-
+
