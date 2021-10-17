@@ -314,3 +314,131 @@
 </body>
 </html>
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">
+    /* 자바스크립트로 컴파일러. ES6-->ES5, JSX-->ES5 */
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js">
+    /* import React, { Component, PureComponent } from 'react' */
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.7.2/prop-types.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">
+    /* import ReactDOM from 'react-dom' */
+</script>
+
+<script type="text/babel">
+    const { useState, useEffect, useRef, useCallback, useMemo, Fragment } = React;
+
+    function CrudContainer(props) {
+        // 컴포넌트의 상태값 설정
+        const [변수명, set변수명] = useState('기본값'); // 상태값이 기본타입인 경우
+        const [state, setState] = useState({ id: 0, name: '', age: 0, }); // 상태값이 참조타입 경우
+
+        // ref 만들기. 예시) const refInput = useRef();
+
+        // refIsMounted는 생명주기의 마운트와 업데이트를 구분하기 위한 ref
+        const refIsMounted = useRef(false);
+        useEffect( () => {
+            if (refIsMounted.current){
+                // 업데이트 될 때마다 실행됨. 여러번. state 가 변경될 때마다
+                console.log('componentDidUpdate');
+            }
+            else {
+                // 마운트 완료 후에 실행됨. 한번만. focus 줄때
+                console.log('componentDidMount');
+                refIsMounted.current = true;
+            }
+        });
+
+        // callback 메서드 작성. callback 메서드는 부모의 공유 상태값을 변경하기 위해서 사용된다.
+        const callback = useCallback( (param)=>{
+            // state 변경
+        }, [/* 메서드와 연관되는 상태명(변수)들을 기술 (공백이면 한번만)*/]);
+
+        // 이벤트 핸들러 작성.
+        const handler = (event)=>{
+            // 이벤트 핸들러는 화살표 함수로 만들면 this bind()를 생략해도 된다
+            console.log(event.target);
+        };
+
+        // JSX로 화면 만들기
+        return (
+            <div>
+                <h1>Creat Read Update Delete</h1>
+                <div>
+                    <div>
+                        <label for="">Name : </label>
+                        <input type="text" name="name" placeholder="이름을 입력하세요" />
+                    </div>
+                    <div>
+                        <label for="">Power : </label>
+                        <input type="number" name="power" placeholder="숫자를 입력하세요"  />
+                    </div>
+                    <button>Add</button>
+                </div>
+                <hr/>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>NAME</th>
+                            <th>POWER</th>
+                            <th>CRUD</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="">
+                            <td>1</td>
+                            <td>슈퍼맨</td>
+                            <td>100</td>
+                            <td>
+                                <button>Del</button>
+                                <button>Power Up</button>
+                                <button>Power Down</button>
+                                <button>Edit</button>
+                            </td>
+                        </tr>
+                        <tr class="strong">
+                            <td>2</td>
+                            <td>아쿠아맨</td>
+                            <td>300</td>
+                            <td>
+                                <button>Del</button>
+                                <button>Power Up</button>
+                                <button>Power Down</button>
+                                <button>Edit</button>
+                            </td>
+                        </tr>
+                        <tr class="strong">
+                            <td>3</td>
+                            <td>스파이더맨</td>
+                            <td>500</td>
+                            <td>
+                                <button>Del</button>
+                                <button>Power Up</button>
+                                <button>Power Down</button>
+                                <button>Edit</button>
+                            </td>
+                        </tr>
+                        <tr class="strong">
+                            <td>4</td>
+                            <td>배트맨2</td>
+                            <td>30</td>
+                            <td>
+                                <button>Del</button>
+                                <button>Power Up</button>
+                                <button>Power Down</button>
+                                <button>Edit</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        )
+    }
+
+    ReactDOM.render(<CrudContainer></CrudContainer>, document.getElementById("app"));
+
+</script>
+
