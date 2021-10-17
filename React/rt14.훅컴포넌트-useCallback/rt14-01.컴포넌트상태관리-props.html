@@ -115,7 +115,7 @@
             // state 변경
             console.log(param);
 
-            debugger;
+            //debugger;
             setChildMessage(param) // childMessage 상태값 변경
             setParentText(param) //parentText 상태값 변경
         }, [/* 메서드와 연관되는 상태명(변수)들을 기술 (공백이면 한번만)*/ childMessage, parentText]); //공백이면 캐싱꺼만 사용 , 있으면 바뀌면 캐싱
@@ -141,7 +141,7 @@
             // 이벤트 핸들러는 화살표 함수로 만들면 this bind()를 생략해도 된다
             console.log(event.target);
 
-            debugger;
+            //debugger;
             //부모 콜백 메서드 호출
             props.callback(childText);
         };
